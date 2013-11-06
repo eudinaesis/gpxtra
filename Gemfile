@@ -18,8 +18,9 @@ group :test, :development do
   gem 'meta_request'
   gem 'binding_of_caller'
   gem 'quiet_assets'
-  gem 'rails-backbone'
 end
+
+gem 'rails-backbone'
 
 gem 'jquery-rails'
 gem 'newrelic_rpm'
