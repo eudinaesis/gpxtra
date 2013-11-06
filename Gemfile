@@ -19,7 +19,6 @@ group :test, :development do
   gem 'binding_of_caller'
   gem 'quiet_assets'
   gem 'rails-backbone'
-  gem 'twitter-bootstrap-rails'
 end
 
 gem 'jquery-rails'
@@ -31,6 +30,11 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+
+gem 'skeleton-rails'
+
+gem 'paperclip'
+gem 'aws-sdk'
 
 gem 'uuidtools'
 

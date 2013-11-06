@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
   include Gravtastic
   gravtastic
 
+  has_many :workouts, :inverse_of => :user
 end

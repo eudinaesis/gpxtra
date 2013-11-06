@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131106011228) do
+ActiveRecord::Schema.define(:version => 20131106101855) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -43,5 +43,25 @@ ActiveRecord::Schema.define(:version => 20131106011228) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "workouts", :force => true do |t|
+    t.integer  "user_id",                                   :null => false
+    t.datetime "datetime"
+    t.string   "type"
+    t.integer  "moving_time"
+    t.float    "distance"
+    t.integer  "elevation"
+    t.boolean  "hidden",                 :default => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "gpx_track_file_name"
+    t.string   "gpx_track_content_type"
+    t.integer  "gpx_track_file_size"
+    t.datetime "gpx_track_updated_at"
+    t.string   "title"
+    t.text     "description"
+  end
+
+  add_index "workouts", ["user_id"], :name => "index_workouts_on_user_id"
 
 end

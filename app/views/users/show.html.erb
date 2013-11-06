@@ -1,1 +1,44 @@
-HELLO THERE <%= @user.name %>
+<% method = "post" %>
+<script>GPX_URL = "<%= @user.workouts.all[1].gpx_track.url %>";
+GPX_URL2 = "<%= @user.workouts.all[0].gpx_track.url %>";
+</script>
+
+HELLO THERE <%= @user.name %><br>
+<%= image_tag @user.gravatar_url %>
+
+<form action="<%= workouts_url %>" 
+  method="post" 
+  accept-charset="utf-8" 
+  enctype="multipart/form-data">
+  
+  <input
+     name="_method"
+     type="hidden"
+     value="<%= method %>">
+  <input
+     name="authenticity_token"
+     type="hidden"
+     value="<%= form_authenticity_token %>">
+
+  <label for="workout_title">Title</label>
+  <input
+     id="workout_title"
+     name="workout[title]"
+     type="text">
+  <br>
+
+  <label for="workout_description">Description</label>
+  <input
+     id="workout_description"
+     name="workout[description]"
+     type="textarea">
+  <br>
+
+  <label for="workout_file">Upload your GPX track!</label>
+  <input id="workout_file" type="file" name="workout[gpx_track]">
+  <br>
+  <input type="submit" value="Upload workout!"></p>
+</form>
+
+<div id="map"></div>
+<div id="json-map"></div>
