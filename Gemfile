@@ -31,6 +31,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
+gem 'underscore-rails'
+
 gem 'skeleton-rails'
 
 gem 'paperclip'
