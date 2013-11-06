@@ -3,42 +3,91 @@
 GPX_URL2 = "<%= @user.workouts.all[0].gpx_track.url %>";
 </script>
 
-HELLO THERE <%= @user.name %><br>
-<%= image_tag @user.gravatar_url %>
+<div class="navbar navbar-static-top">
+  <div class="navbar-inner">
+    <a class="brand" href="/">GPXtra</a>
+    <ul class="nav">
+      <li role="button" class="btn btn-custom" data-toggle="modal" data-target="#uploadModal">
+          Upload workout
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" id="user-dropdown" data-toggle="dropdown"><%= @user.name %><b class="caret"></b></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="user-dropdown">
+          <li>
+            <a href="#settings">Edit settings</a>
+          </li>
+          <li>
+            <a href="/users/sign_out" data-method="delete">Log out</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
 
-<form action="<%= workouts_url %>" 
-  method="post" 
-  accept-charset="utf-8" 
-  enctype="multipart/form-data">
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#feed">Feed</a>
+  </li>
+  <li>
+    <a href="#profile">Profile</a>
+  </li>
+  <li>
+    <a href="#explore">Explore</a>
+  </li>
+</ul>
+      
+<div id="uploadModal" 
+  class="modal hide fade" 
+  tabindex="1" 
+  role="dialog" 
+  aria-labelledby="uploadModalLabel" 
+  aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 id="uploadModalLabel">Upload a new track!</h3>
+  </div>
+  <div class="modal-body">
+    <form id="upload-form" action="<%= workouts_url %>" 
+      method="post" 
+      accept-charset="utf-8" 
+      enctype="multipart/form-data">
   
-  <input
-     name="_method"
-     type="hidden"
-     value="<%= method %>">
-  <input
-     name="authenticity_token"
-     type="hidden"
-     value="<%= form_authenticity_token %>">
+      <input
+         name="_method"
+         type="hidden"
+         value="<%= method %>">
+      <input
+         name="authenticity_token"
+         type="hidden"
+         value="<%= form_authenticity_token %>">
 
-  <label for="workout_title">Title</label>
-  <input
-     id="workout_title"
-     name="workout[title]"
-     type="text">
-  <br>
+      <label for="workout_title">Title</label>
+      <input
+         id="workout_title"
+         name="workout[title]"
+         type="text">
+      <br>
 
-  <label for="workout_description">Description</label>
-  <input
-     id="workout_description"
-     name="workout[description]"
-     type="textarea">
-  <br>
+      <label for="workout_description">Description</label>
+      <input
+         id="workout_description"
+         name="workout[description]"
+         type="textarea">
+      <br>
 
-  <label for="workout_file">Upload your GPX track!</label>
-  <input id="workout_file" type="file" name="workout[gpx_track]">
-  <br>
-  <input type="submit" value="Upload workout!"></p>
-</form>
+      <label for="workout_file">Upload your GPX track!</label>
+      <input id="workout_file" type="file" name="workout[gpx_track]">
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <input class="btn btn-primary" type="submit" form="upload-form" value="Upload workout!">
+  </div>
+</div>
+
+Hi, <%= @user.name %><br>
+<%= image_tag @user.gravatar_url %>
 
 <div id="map"></div>
 <div id="json-map"></div>

@@ -5,11 +5,12 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
   <%= javascript_include_tag "application" %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <%= "<p class='notice'>" + notice + "</p>" if notice %>
+  <%= "<p class='alert'>" + alert + "</p>" if alert %>
   <%= yield %>
 </body>
 </html>
