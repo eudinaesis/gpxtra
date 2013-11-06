@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+ActiveRecord::Base.transaction do
+  User.create({
+    name: "Demo User",
+    email: "demo_user@pnorthup.me",
+    password: ENV["USER_PASSWORD"]
+  })
+end

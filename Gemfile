@@ -24,5 +24,14 @@ end
 
 gem 'jquery-rails'
 gem 'newrelic_rpm'
+gem 'figaro'
+gem 'gravtastic'
+
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+
+gem 'uuidtools'
 
 gem 'bcrypt-ruby', '~> 3.0.0'
