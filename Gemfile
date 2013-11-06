@@ -18,6 +18,7 @@ group :test, :development do
   gem 'meta_request'
   gem 'binding_of_caller'
   gem 'quiet_assets'
+  gem 'webrick', '>= 1.3.1'
 end
 
 gem 'rails-backbone'
