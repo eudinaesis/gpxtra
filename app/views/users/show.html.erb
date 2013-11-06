@@ -1,5 +1,5 @@
 <% method = "post" %>
-<script>GPX_URL = "<%= @user.workouts.all[1].gpx_track.url %>";
+<script>GPX_URL = "<%= @user.workouts.last.gpx_track.url %>";
 GPX_URL2 = "<%= @user.workouts.all[0].gpx_track.url %>";
 </script>
 
