@@ -9,8 +9,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= "<p class='notice'>" + notice + "</p>" if notice %>
-  <%= "<p class='alert'>" + alert + "</p>" if alert %>
+  <%= "<p class='notice'> #{notice} </p>".html_safe if notice %>
+  <%= "<p class='alert'> #{alert} </p>".html_safe if alert %>
   <%= yield %>
 </body>
 </html>

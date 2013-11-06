@@ -7,8 +7,8 @@ GPX_URL2 = "<%= @user.workouts.all[0].gpx_track.url %>";
   <div class="navbar-inner">
     <a class="brand" href="/">GPXtra</a>
     <ul class="nav">
-      <li role="button" class="btn btn-custom" data-toggle="modal" data-target="#uploadModal">
-          Upload workout
+      <li role="button" class="" data-toggle="modal" data-target="#uploadModal">
+          <img src="assets/cloud-upload-icon-32.png" alt="Upload workout"/>
       </li>
       <li class="dropdown">
         <a class="dropdown-toggle" id="user-dropdown" data-toggle="dropdown"><%= @user.name %><b class="caret"></b></a>
@@ -86,8 +86,15 @@ GPX_URL2 = "<%= @user.workouts.all[0].gpx_track.url %>";
   </div>
 </div>
 
-Hi, <%= @user.name %><br>
-<%= image_tag @user.gravatar_url %>
+<div class="row">
+  <div class="span12">
+    Workout Feed
+    <div class="row">
+      <div class="span6">Level 2</div>
+      <div class="span3">Level 2</div>
+    </div>
+  </div>
+</div>
 
 <div id="map"></div>
 <div id="json-map"></div>
