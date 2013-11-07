@@ -7,31 +7,19 @@ window.GPXtra = {
     console.log('Hello from Backbone!');
 		GPXtra.workouts = new GPXtra.Collections.Workouts();
 		GPXtra.workouts.fetch({
-			success: function () {
-				showWorkoutsIndex($("#sidebar"));
-				new GPXtra.Routers.Workouts($("#content"));
-				Backbone.history.start();
+      success: function () {
+        console.log("hooray");
 			}
 		});
   }
 };
-
-var showWorkoutsIndex = GPXtra.showWorkoutsIndex = function(element) {
-	var $indexEl = element;
-	var indexView = new GPXtra.Views.WorkoutsIndex({
-		collection: GPXtra.workouts
-	});
-	indexView.render();
-	$indexEl.html(indexView.$el);
-};
-
 
 $(document).ready(function(){
   GPXtra.initialize();
 });
 
 
-$(document).ready(function() {
+var rendermap = function() {
 	var map = new L.Map('map');
 
 	var url = 'http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg',
@@ -56,4 +44,4 @@ $(document).ready(function() {
 	});
 	g.addTo(map);
 	map.addLayer(service);
-});
+};

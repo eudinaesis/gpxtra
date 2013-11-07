@@ -16,7 +16,6 @@
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink
-//= require backbone/gp_xtra
 //= require twitter/bootstrap
 //= require_tree .
 //= require_tree ../../../vendor/assets
