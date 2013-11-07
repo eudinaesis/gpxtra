@@ -21,7 +21,7 @@ group :test, :development do
   gem 'webrick', '>= 1.3.1'
 end
 
-gem 'rails-backbone'
+gem 'backbone-on-rails'
 
 gem 'jquery-rails'
 gem 'newrelic_rpm'
