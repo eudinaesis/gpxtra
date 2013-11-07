@@ -9,9 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require bootstrap
- *= require bootstrap-responsive
  *= require leaflet
  *= require leaflet.ie
  *= require_tree .
  */
+$grid-float-breakpoint: 100px;
+$navbar-height: 35px;
+@import "twitter/bootstrap";
