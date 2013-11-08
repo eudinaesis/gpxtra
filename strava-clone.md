@@ -42,6 +42,12 @@ x- user can view own files
 - user can view profile data
   * # of workouts, total distance/elev, max dist/elev
   * display by week/month/6 months/all time
+- cosmetic:  
+    - bikewheel loading spinner
+    - font-awesome
+    - font-awesome map glyphs
+  * imperial/metric
+  
 
 
 **Rails Models: MVP**

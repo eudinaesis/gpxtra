@@ -1,0 +1,88 @@
+<div id="uploadModal" 
+  class="modal fade" 
+  tabindex="-1" 
+  role="dialog" 
+  aria-labelledby="uploadModalLabel" 
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 id="uploadModalLabel">Upload a new track!</h3>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="upload-form" action="/workouts" 
+          method="post" 
+          accept-charset="utf-8" 
+          enctype="multipart/form-data"
+          data-remote="true">
+  
+          <div class="form-group">
+            <label for="workout_title">Title</label>
+            <input
+            class="form-control"
+            id="workout_title"
+            name="workout[title]"
+            type="text">
+          </div>
+          
+          <div class="form-group">
+            <label for="workout_type">Workout type</label>
+            <select class="form-control" id="workout_type" name="workout[workout_type]">
+              <option value="bike">Bike ride</option>
+              <option value="run">Run</option>
+              <option value="hike">Hike</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="workout_description">Description</label>
+            <input
+               id="workout_description"
+               name="workout[description]"
+               type="textarea"
+               class="form-control"
+               rows="3"
+               placeholder="Optional description">
+          </div>
+          
+          <div class="form-group">
+            <label for="workout_file">Upload your GPX track!</label>
+            <input class="form-control" id="workout_file" type="file" name="workout[gpx_track]">
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="workout[hidden]">Private
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <input class="btn btn-primary" id="upload-button" type="submit" form="upload-form" value="Upload workout!">
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/">GPXtra</a>
+  </div>
+  <ul class="nav navbar-nav">
+    <li role="button" class="navbar-btn" data-toggle="modal" data-target="#uploadModal">
+        <img src="assets/cloud-upload-icon-32.png" alt="Upload workout"/>
+    </li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" id="user-dropdown" data-toggle="dropdown" href="#"><%= username %><b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="#!/settings">Edit settings</a>
+        </li>
+        <li>
+          <a href="/users/sign_out" data-method="delete">Log out</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>

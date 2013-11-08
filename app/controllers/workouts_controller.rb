@@ -1,7 +1,7 @@
 class WorkoutsController < ApplicationController
   def index
-    @workouts = Workout.where(:user_id => current_user.id)
-    render :json => @workouts
+    @workouts = Workout.includes(:user).where(:user_id => current_user.id).order(:datetime)
+    render :json => @workouts, root: false
   end
   
   def show

@@ -1,131 +1,27 @@
 <% method = "post" %>
-<script>GPX_URL = "<%= @user.workouts.last.gpx_track.url %>";
-GPX_URL2 = "<%= @user.workouts.all[0].gpx_track.url %>";
+<script>
+  INITIAL_WORKOUTS = "";
+  USERNAME = "<%= @user.name %>";
 </script>
-      
-<div id="uploadModal" 
-  class="modal fade" 
-  tabindex="-1" 
-  role="dialog" 
-  aria-labelledby="uploadModalLabel" 
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3 id="uploadModalLabel">Upload a new track!</h3>
-      </div>
-      <div class="modal-body">
-        <form id="upload-form" action="<%= workouts_url %>" 
-          method="post" 
-          accept-charset="utf-8" 
-          enctype="multipart/form-data">
-  
-          <input
-             name="_method"
-             type="hidden"
-             value="<%= method %>">
-          <input
-             name="authenticity_token"
-             type="hidden"
-             value="<%= form_authenticity_token %>">
-
-          <label for="workout_title">Title</label>
-          <input
-             id="workout_title"
-             name="workout[title]"
-             type="text">
-          <br>
-
-          <label for="workout_description">Description</label>
-          <input
-             id="workout_description"
-             name="workout[description]"
-             type="textarea">
-          <br>
-
-          <label for="workout_file">Upload your GPX track!</label>
-          <input id="workout_file" type="file" name="workout[gpx_track]">
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-        <input class="btn btn-primary" type="submit" form="upload-form" value="Upload workout!">
-      </div>
-    </div>
-  </div>
+<div id="navbar">
 </div>
-
-<nav class="navbar navbar-default" role="navigation">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="/">GPXtra</a>
-  </div>
-  <ul class="nav navbar-nav">
-    <li role="button" class="navbar-btn" data-toggle="modal" data-target="#uploadModal">
-        <img src="assets/cloud-upload-icon-32.png" alt="Upload workout"/>
-    </li>
-    <li class="dropdown">
-      <a class="dropdown-toggle" id="user-dropdown" data-toggle="dropdown" href="#"><%= @user.name %><b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li>
-          <a href="#!/settings">Edit settings</a>
-        </li>
-        <li>
-          <a href="/users/sign_out" data-method="delete">Log out</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav>
 
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
       <ul class="nav nav-tabs">
-        <li class="active">
+        <li class="active" id="feed-tab">
           <a href="#!/feed">Feed</a>
         </li>
-        <li>
+        <li id="profile-tab">
           <a href="#!/profile">Profile</a>
         </li>
-        <li>
+        <li id="explore-tab">
           <a href="#!/explore">Explore</a>
         </li>
       </ul>
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-9">
-      <h4>Workout Feed</h4>
-    </div>
-    <div class="dropdown col-xs-3">
-      <button class="btn dropdown-toggle sr-only" type="button" id="feedType" data-toggle="dropdown">
-        Feed views
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="feedType">
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
-          My workouts</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
-          Entire feed</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-6">
-      <%= Date.today %>
-      <div class="row">
-        <div class="col-xs-4">
-          Ride
-        </div>
-        <div class="col-xs-4">
-          <%= @user.name %>
-        </div>
-        <div class="col-xs-4">
-          Long ride
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-6" id="map"></div>
+  <div id="content-grid">
   </div>
 </div>

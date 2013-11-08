@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.serializeJSON
 //= require twitter/bootstrap
 //= require underscore
 //= require backbone
+//= require_tree ./support
 //= require gpxtra
 //= require_tree ../templates
 //= require_tree ./models

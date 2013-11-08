@@ -39,6 +39,8 @@ gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :github => 'anjlab/bootstrap-rails'
 gem 'font-awesome-sass'
 
+gem "active_model_serializers"
+
 gem 'paperclip'
 gem 'aws-sdk'
 

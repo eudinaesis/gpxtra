@@ -6,8 +6,12 @@ window.GPXtra = {
   initialize: function() {
     console.log('Hello from Backbone!');
 		GPXtra.workouts = new GPXtra.Collections.Workouts();
+    var navbar = new GPXtra.Views.NavBar();
+    $("#navbar").html(navbar.render().$el);
 		GPXtra.workouts.fetch({
       success: function () {
+        new GPXtra.Routers.GPXtraRouter($("#content-grid"));
+        Backbone.history.start();
         console.log("hooray");
 			}
 		});

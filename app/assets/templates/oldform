@@ -1,0 +1,10 @@
+OLD FORM
+
+          <input
+             name="_method"
+             type="hidden"
+             value="">
+          <input
+             name="authenticity_token"
+             type="hidden"
+             value="<%= $('meta[name="csrf-token"]').attr('content')) %>">

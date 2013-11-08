@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-xs-9">
+    <h4>Workout Feed: <%= workouts.models.length %></h4>
+  </div>
+  <div class="dropdown col-xs-3">
+    <button class="btn dropdown-toggle hide" type="button" id="feedType" data-toggle="dropdown">
+      Feed views
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="feedType">
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
+        My workouts</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
+        Entire feed</a></li>
+    </ul>
+  </div>
+</div>
+<div id="workout-feed">
+</div>
