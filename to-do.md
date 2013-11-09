@@ -1,6 +1,6 @@
 ###TO DO###
 
-**THURSDAY, 11/6**
+**FRIDAY, 11/6**
 
 * Figure out Leaflet-elev options; make elev graph line only
   - snapshot of graph for index view
@@ -12,5 +12,10 @@
 **JAVASCRIPT/DATA**
 * Changes to rails models:
 
-** maybe return Workouts sorted and grouped by datetime? 
+x* maybe return Workouts sorted and grouped by datetime? 
+x- fixed serializer for input
 
+
+* check on S3 cache options--don't want to reload constantly
+
+* Paperclip needs a DATA type in the beginning of the string; insert manually!!!

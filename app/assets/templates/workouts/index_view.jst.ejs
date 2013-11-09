@@ -1,22 +1,37 @@
-<div class="row">
-  <div class="col-xs-6">
-    <%= workout.escape("datetime") %>
-    <div class="row">
-      <div class="col-xs-2">
-        <%= workout.escape("workout_type") %>
-      </div>
-      <div class="col-xs-5">
-        <%= workout.escape("username") %>
-      </div>
-      <div class="col-xs-5">
-        <%= workout.escape("title") %>
-      </div>
+<div class="panel panel-default">
+  <div class="row panel-heading">
+    <div class="col-xs-12">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="workout-feed" href="#collapse-<%= workout.id %>">
+          <%= workout.escape("datetime") %>
+        </a>
+      </h4>
+    </div> <!-- end of col -->
+  </div> <!-- end of row -->
+  <div class="row panel-body">
+    <div class="col-xs-2">
+      <%= workout.escape("workout_type") %>
     </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <%= workout.escape("description") %>
-      </div
+    <div class="col-xs-5">
+      <%= workout.escape("username") %>
+    </div>
+    <div class="col-xs-5">
+      <%= workout.escape("title") %>
     </div>
   </div>
-  <div class="col-xs-6 thumbnail-map"></div>
-</div>
+<% if (workout.escape("description").length !== 0) { %>
+  <div class="row panel-body">
+    <div class="col-xs-12">
+      <%= workout.escape("description") %>
+    </div>
+  </div>
+<% } %>
+<!-- end of index view divs -->
+  <div class="panel-collapse collapse" id="collapse-<%= workout.id %>"> <!-- expandable body, for workout view -->
+    <div class="row panel-body">
+      <div class="col-xs-12">
+      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div> <!-- end of workout view panel body -->
+</div> <!-- collapsible section -->

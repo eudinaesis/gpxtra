@@ -1,6 +1,6 @@
 <% method = "post" %>
 <script>
-  INITIAL_WORKOUTS = "";
+  INITIAL_WORKOUTS = <%= @json_wks.to_json.html_safe %>;
   USERNAME = "<%= @user.name %>";
 </script>
 <div id="navbar">

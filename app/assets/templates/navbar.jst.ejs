@@ -21,14 +21,14 @@
             <label for="workout_title">Title</label>
             <input
             class="form-control"
-            id="workout_title"
+            id="workout-title"
             name="workout[title]"
             type="text">
           </div>
           
           <div class="form-group">
-            <label for="workout_type">Workout type</label>
-            <select class="form-control" id="workout_type" name="workout[workout_type]">
+            <label for="workout-type">Workout type</label>
+            <select class="form-control" id="workout-type" name="workout[workout_type]">
               <option value="bike">Bike ride</option>
               <option value="run">Run</option>
               <option value="hike">Hike</option>
@@ -36,9 +36,9 @@
           </div>
           
           <div class="form-group">
-            <label for="workout_description">Description</label>
+            <label for="workout-description">Description</label>
             <input
-               id="workout_description"
+               id="workout-description"
                name="workout[description]"
                type="textarea"
                class="form-control"
@@ -47,12 +47,12 @@
           </div>
           
           <div class="form-group">
-            <label for="workout_file">Upload your GPX track!</label>
-            <input class="form-control" id="workout_file" type="file" name="workout[gpx_track]">
+            <label for="workout-file" id="upload-label">Upload your GPX track!</label>
+            <input class="form-control" id="workout-file" type="file" name="workout[gpx_track]" accept="gpx">
           </div>
           <div class="checkbox">
             <label>
-              <input type="checkbox" name="workout[hidden]">Private
+              <input type="checkbox" id="private-checkbox" name="workout[hidden]">Private
             </label>
           </div>
         </form>

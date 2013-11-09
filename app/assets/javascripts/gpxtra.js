@@ -5,16 +5,12 @@ window.GPXtra = {
   Routers: {},
   initialize: function() {
     console.log('Hello from Backbone!');
-		GPXtra.workouts = new GPXtra.Collections.Workouts();
+		GPXtra.workouts = new GPXtra.Collections.Workouts(INITIAL_WORKOUTS);
     var navbar = new GPXtra.Views.NavBar();
     $("#navbar").html(navbar.render().$el);
-		GPXtra.workouts.fetch({
-      success: function () {
-        new GPXtra.Routers.GPXtraRouter($("#content-grid"));
-        Backbone.history.start();
-        console.log("hooray");
-			}
-		});
+    new GPXtra.Routers.GPXtraRouter($("#content-grid"));
+    Backbone.history.start();
+    console.log("hooray");
   }
 };
 
