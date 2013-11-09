@@ -16,3 +16,33 @@
 $grid-float-breakpoint: 100px;
 $navbar-height: 35px;
 @import "twitter/bootstrap";
+.map {
+  width: 80%;
+  height: 500px;
+}
+.gpxdata {
+  ul {
+      font-size: 0.8em;
+      list-style-type: none;
+      li {
+          display: inline;
+          float: left;
+          padding-right: 2em;
+          &:after {
+              content: "m";
+          }
+      }
+      li#elevationgain {
+          &:before {
+              content: "\f062";
+              font-family: FontAwesome;
+          }                   
+      }
+      li#elevationloss {
+          &:before {
+              content: "\f063";
+              font-family: FontAwesome;
+          }
+      }
+  }     
+}

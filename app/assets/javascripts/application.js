@@ -18,6 +18,10 @@
 //= require backbone
 //= require_tree ./support
 //= require gpxtra
+//= require d3
+//= require leaflet
+//= require leaflet-gpx
+//= require leaflet-elevation
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

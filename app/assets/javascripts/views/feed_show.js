@@ -1,16 +1,27 @@
 GPXtra.Views.FeedShow = Support.CompositeView.extend({
 
   initialize: function() {
+    _.bindAll(this, "displayMapDetail");
+    _.bindAll(this, "hideMapDetail");
     this.listenTo(this.collection, "add remove change:title reset", this.renderWorkoutList);
-    $('#content-grid').on('hide.bs.collapse', '[id|="collapse"]', this.hideMapView);
-    $('#content-grid').on('show.bs.collapse', '[id|="collapse"]', this.displayMapView);
+    $('#content-grid').on('hide.bs.collapse', '[id|="collapse"]', this.hideMapDetail);
+    $('#content-grid').on('show.bs.collapse', '[id|="collapse"]', this.displayMapDetail);
   },
   
-  displayMapView: function(event){
-    console.log(event.target);
+  displayMapDetail: function(event){
+    if (event.target.children.length === 0) {
+      var workoutId = parseInt(event.target.id.slice(9)); // id="comment-N"
+      var workout = this.collection.get(workoutId);
+      var mapDetail = new GPXtra.Views.MapDetail({
+        model: workout
+      });
+      var workoutContainer = event.target // insert into expanding panel
+      this.renderChildInto(mapDetail, workoutContainer);
+      mapDetail.initMap(workout.escape("track_url"));
+    }
   },
 
-  hideMapView: function(event){
+  hideMapDetail: function(event){
     console.log(event.target);
   },
 
