@@ -10,6 +10,7 @@ window.GPXtra = {
     $("#navbar").html(navbar.render().$el);
     new GPXtra.Routers.GPXtraRouter($("#content-grid"));
     Backbone.history.start();
+    Backbone.history.navigate("#!/feed", { trigger: true});
     console.log("hooray");
   }
 };
