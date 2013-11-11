@@ -15,6 +15,7 @@ GPXtra.Views.MapDetail = Support.CompositeView.extend({
     // create a map in the "map" div
     var map = L.map('map-' + this.model.id);
     var viewObj = this;
+    var workout = this.model
 
     // create an OpenStreetMap tile layer
     var osmLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -47,7 +48,7 @@ GPXtra.Views.MapDetail = Support.CompositeView.extend({
         },
         xTicks: undefined, //number of ticks in x axis, calculated by default according to width
         yTicks: undefined, //number of ticks on y axis, calculated by default according to height
-        collapsed: false    //collapsed mode, show chart on click or mouseover
+        collapsed: true    //collapsed mode, show chart on click or mouseover
     });
     el.addTo(map);
 
@@ -68,6 +69,15 @@ GPXtra.Views.MapDetail = Support.CompositeView.extend({
     // proceed with the loading as soon as the gpx is loaded
     gpxLayer.on('loaded', function(e) {
       var gpx = e.target;
+      workout.set({
+        datetime: gpx.get_start_time(),
+        distance: gpx.get_distance_imp(),
+        moving_time: gpx.get_duration_string(gpx.get_moving_time()),
+        pace: gpx.get_duration_string(gpx.get_moving_pace_imp()),
+        elevation: Math.floor(gpx.get_elevation_gain() * 3.28084),
+        hrAvg: gpx.get_average_hr(),
+        hrArr: gpx.get_heartrate_data_imp()
+      });
     
       // show the map where the gpx is
       map.fitBounds(e.target.getBounds());
@@ -91,7 +101,7 @@ GPXtra.Views.MapDetail = Support.CompositeView.extend({
       viewObj.$el.find(".elevationgain").html(
         gpx.get_elevation_gain().toFixed(0)
       );
-      this.$el.find(".elevationloss").html(
+      viewObj.$el.find(".elevationloss").html(
         gpx.get_elevation_loss().toFixed(0)
       );      
     });

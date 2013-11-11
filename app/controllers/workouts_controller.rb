@@ -8,6 +8,24 @@ class WorkoutsController < ApplicationController
     @workout = Workout.find(params[:id])
     render :json => @workout
   end
+  
+  def update
+    @workout = Workout.find(params[:id])
+    if @workout.user_id == current_user.id 
+      @workout.update_attributes(params[:workout])
+    end
+    render :json => @workout, root: false
+  end
+  
+  def destroy
+    @workout = Workout.find(params[:id])
+    if @workout.user_id == current_user.id 
+      @workout.destroy
+      head :ok
+    else
+      head :bad_request
+    end
+  end
 
   def create
     @workout = Workout.new(params[:workout])

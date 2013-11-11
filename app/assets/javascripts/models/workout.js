@@ -49,6 +49,7 @@ GPXtra.Models.Workout = Backbone.Model.extend({
     attrCopy.workout.datetime = attrCopy.workout.datetime.toJSON();
     delete attrCopy.workout["track_url"];
     delete attrCopy.workout["username"];
+    delete attrCopy.workout["hrArr"];
     return attrCopy;
   }
 });

@@ -3,7 +3,7 @@ GPXtra.Views.FeedShow = Support.CompositeView.extend({
   initialize: function() {
     _.bindAll(this, "displayMapDetail");
     _.bindAll(this, "hideMapDetail");
-    this.listenTo(this.collection, "add remove change:title reset", this.renderWorkoutList);
+    this.listenTo(this.collection, "add remove change:datetime change:title change:description change:workout_type reset", this.renderWorkoutList);
     $('#content-grid').on('hide.bs.collapse', '[id|="collapse"]', this.hideMapDetail);
     $('#content-grid').on('show.bs.collapse', '[id|="collapse"]', this.displayMapDetail);
   },

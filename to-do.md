@@ -13,9 +13,3 @@
 * Changes to rails models:
 
 x* maybe return Workouts sorted and grouped by datetime? 
-x- fixed serializer for input
-
-
-* check on S3 cache options--don't want to reload constantly
-
-* Paperclip needs a DATA type in the beginning of the string; insert manually!!!

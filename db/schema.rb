@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131107184330) do
+ActiveRecord::Schema.define(:version => 20131111184226) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20131107184330) do
     t.integer  "user_id",                                   :null => false
     t.datetime "datetime"
     t.string   "workout_type"
-    t.integer  "moving_time"
+    t.string   "moving_time"
     t.float    "distance"
     t.integer  "elevation"
     t.boolean  "hidden",                 :default => false
@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(:version => 20131107184330) do
     t.datetime "gpx_track_updated_at"
     t.string   "title"
     t.text     "description"
+    t.string   "pace"
+    t.integer  "hrAvg"
   end
 
   add_index "workouts", ["user_id"], :name => "index_workouts_on_user_id"
