@@ -1,15 +1,16 @@
 ###TO DO###
 
-**TUESDAY, 11/12**
-
+**WEDNESDAY, 11/12**
+* Serious bugs:
+  - Some of Bill's and Tracy's GPX files don't map. Not clear why.
 * Improved Leaflet mapping/graphing
-  x- fix bug with tracing always acting on first map
-  x- other map tile options [using Stamen / terrain]
-  x- better elevation graph--line, not fill-in; colors
   - graph HR
+  - Meters vs Feet, etc
   - speed?
   - change L-gpx so handles pure XML on first upload
   - snapshot of graph for index view [ sort of possible ]
+  - allow user to choose mapping options?
+  - fix problem with huge GPX files  
 * Other users
   - followers/following
   - feeds, with others different colors
@@ -30,3 +31,12 @@
   
   TEST = "data:application/octet-stream;base64," + btoa(d3.select(".leaflet-overlay-pane").html())
   
+  var html = d3.select("svg")
+          .attr("version", 1.1)
+          .attr("xmlns", "http://www.w3.org/2000/svg")
+          .node().parentNode.innerHTML;
+ 
+    //console.log(html);
+    var imgsrc = 'data:image/svg+xml;base64,'+ btoa(html);
+    var img = '<img src="'+imgsrc+'">'; 
+    d3.select("#svgdataurl").html(img);

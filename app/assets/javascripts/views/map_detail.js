@@ -18,30 +18,30 @@ GPXtra.Views.MapDetail = Support.CompositeView.extend({
     });
   },
   
-  initMap: function (gpxfile) {
+  initMap: function (gpxfile, tileSet) {
     // create a map in the "map" div
     var map = L.map('map-' + this.model.id);
     var viewObj = this;
     var workout = this.model
 
     // create an OpenStreetMap tile layer
-    var osmLayer = L.tileLayer('http://{s}.tile.stamen.com/terrain/{z}/{x}/{y}.jpg', { attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>'
-  }
-
-/*      'http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-    }
-    */ );
-
-    // create an HillShading tile layer
-  /*  var hillshadeLayer = L.tileLayer('http://toolserver.org/~cmarqu/hill/{z}/{x}/{y}.png', {
-      attribution: '<a href="http://de.wikipedia.org/wiki/SRTM-Daten">NASA SRTM</a>',
-      opacity: 0.6,
-    });
-*/    
+    var tileOptions = {
+      terrain: ['http://{s}.tile.stamen.com/terrain/{z}/{x}/{y}.jpg', {
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>'
+      }],
+      osm: ['http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      }],
+      watercolor: ['http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg', {
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>'
+      }],
+    };
+    tileSet = tileSet || "terrain";
+    var osmLayer = L.tileLayer(tileOptions[tileSet][0], tileOptions[tileSet][1]);
+    
     var el = L.control.elevation( {
         position: "topright",
-        theme: "steelblue-theme", //default: lime-theme
+        theme: "lime2-theme", //default: lime-theme
         width: 600,
         height: 275,
         margins: {
@@ -81,7 +81,7 @@ GPXtra.Views.MapDetail = Support.CompositeView.extend({
     gpxLayer.on('loaded', function(e) {
       var gpx = e.target;
       workout.set({
-        datetime: gpx.get_start_time(),
+        datetime: gpx.get_start_time() || new Date(),
         distance: gpx.get_distance_imp().toFixed(2),
         moving_time: Math.floor(gpx.get_moving_time() / 1000),
         pace: gpx.get_duration_string(gpx.get_moving_pace_imp()),
@@ -119,7 +119,9 @@ GPXtra.Views.MapDetail = Support.CompositeView.extend({
     });
     
     gpxLayer.on('addline', function(e) {
-      el.addData(e.line);
+      if (workout.get("elevation") > 0) {
+        el.addData(e.line);        
+      }
     });
   }  
 });

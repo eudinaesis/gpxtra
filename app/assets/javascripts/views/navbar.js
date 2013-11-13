@@ -57,6 +57,7 @@ GPXtra.Views.NavBar = Support.CompositeView.extend({
 					if (isNew) {
 						GPXtra.workouts.add(viewObj.model);
 					}
+          $("#upload-form").trigger("reset");
 					Backbone.history.navigate("#!/feed", { trigger: true });
 				},
 				error: function (resp, status, jqXHR) {
