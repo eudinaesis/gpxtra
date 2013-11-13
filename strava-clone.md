@@ -31,7 +31,7 @@ x- user can upload GPX files
 x- user can view own files
   x* maps track
   x* shows elevation profile
-  * calculates summary statistics
+  x* calculates summary statistics
 x- Backbone implementation of Workout/s, x-rendering, x-uploading, x-saving
   
 **Features: FULL**

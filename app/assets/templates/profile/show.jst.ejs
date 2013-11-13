@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-xs-6">
+    <h4><%= GPXtra.user.name %></h4>
+  </div>
+  <div class="col-xs-6">
+    <img src="<%= GPXtra.user.gravatar_url %>" alt="Gravatar image">
+  </div>
+</div>
+<div class="panel-group">
+  <div id="profile-stats" class="panel panel-defaul"> <!-- beginning of panel -->
+    <div class="row panel-heading">
+      <div class="col-xs-8">
+        <h5 class="panel-title">Statistics for the past ... </h5>
+      </div>
+      <div class="dropdown col-xs-4" id="stats-dropdown">
+        <button class="btn dropdown-toggle" type="button" id="stats-time" data-toggle="dropdown">
+          week
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" id="stats-menu" role="menu" aria-labelledby="stats-time">
+          <li role="presentation" class="active stats-dd" data-id="7"><a role="menuitem" tabindex="-1" href="#">
+            week</a></li>
+          <li role="presentation" class="stats-dd" data-id="28"><a role="menuitem" tabindex="-1" href="#">
+            4 weeks</a></li>
+          <li role="presentation" class="stats-dd" data-id="91"><a role="menuitem" tabindex="-1" href="#">
+            3 months</a></li>
+          <li role="presentation" class="stats-dd" data-id="365"><a role="menuitem" tabindex="-1" href="#">
+            year</a></li>
+          <li role="presentation" class="stats-dd" data-id="9999"><a role="menuitem" tabindex="-1" href="#">
+            all time</a></li>
+        </ul>
+      </div>
+    </div> <!-- row end -->
+    <div class="row panel-body" id="stats-go-here">
+    </div> <!-- end of body row -->
+  </div> <!-- end of panel -->
+</div>

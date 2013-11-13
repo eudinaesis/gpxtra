@@ -1,0 +1,14 @@
+<ul class="list-group">
+  <li class="list-group-item">
+    Workouts: <%= workouts.stats(statsTime)["num_workouts"] %>
+  </li>
+  <li class="list-group-item">
+    Distance: <%= workouts.stats(statsTime)["total_distance"] %> miles
+  </li>
+  <li class="list-group-item">
+    Moving time: <%= workouts.stats(statsTime)["total_time"] %>
+  </li>
+  <li class="list-group-item">
+    Elevation: <%= workouts.stats(statsTime)["total_elev"] %> feet
+  </li>
+</ul>

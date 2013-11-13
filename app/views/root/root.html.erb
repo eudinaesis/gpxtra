@@ -1,7 +1,7 @@
 <% method = "post" %>
 <script>
   INITIAL_WORKOUTS = <%= @json_wks.to_json.html_safe %>;
-  USERNAME = "<%= @user.name %>";
+  USER_DATA = <%= @user.to_json.html_safe %>;
 </script>
 <div id="navbar">
 </div>

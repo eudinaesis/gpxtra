@@ -1,3 +1,4 @@
+// change to line 280 to deal w/ multiple maps
 L.Control.Elevation = L.Control.extend({
 	options: {
 		position: "topright",
@@ -275,8 +276,9 @@ L.Control.Elevation = L.Control.extend({
 		if (opts.useHeightIndicator) {
 
 			if (!this._mouseHeightFocus) {
-
-				var heightG = d3.select(".leaflet-overlay-pane svg")
+        // ensure we're dealing with THIS map -pln
+				var heightG = d3.select(this._map._container)
+            .select(".leaflet-overlay-pane svg")
 					.append("g");
 				this._mouseHeightFocus = heightG.append('svg:line')
 					.attr('class', 'height-focus line')

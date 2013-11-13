@@ -6,5 +6,5 @@ class WorkoutSerializer < ActiveModel::Serializer
   def username
     object.user.name
   end
-  self.root = false\
+  self.root = false
 end

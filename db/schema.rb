@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131111184226) do
+ActiveRecord::Schema.define(:version => 20131111214414) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(:version => 20131111184226) do
     t.integer  "user_id",                                   :null => false
     t.datetime "datetime"
     t.string   "workout_type"
-    t.string   "moving_time"
     t.float    "distance"
     t.integer  "elevation"
     t.boolean  "hidden",                 :default => false
@@ -62,8 +61,11 @@ ActiveRecord::Schema.define(:version => 20131111184226) do
     t.text     "description"
     t.string   "pace"
     t.integer  "hrAvg"
+    t.integer  "moving_time"
   end
 
+  add_index "workouts", ["distance"], :name => "index_workouts_on_distance"
+  add_index "workouts", ["moving_time"], :name => "index_workouts_on_moving_time"
   add_index "workouts", ["user_id"], :name => "index_workouts_on_user_id"
 
 end

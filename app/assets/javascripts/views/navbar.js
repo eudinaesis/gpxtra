@@ -11,7 +11,7 @@ GPXtra.Views.NavBar = Support.CompositeView.extend({
   },
   
   render: function(){
-    var renderedContent = JST["navbar"]({ username: USERNAME });
+    var renderedContent = JST["navbar"]({ username: GPXtra.user["name"] });
     this.$el.html(renderedContent);
     return this;
   },
@@ -36,7 +36,17 @@ GPXtra.Views.NavBar = Support.CompositeView.extend({
       console.log("File read-in!")
     };
     reader.readAsDataURL(file);
-  },
+    // Do I want to analyze data from the beginning?
+    var r2 = new FileReader();
+    r2.onloadstart = function(event) {
+      console.log("Starting r2 upload");
+    };
+    r2.onloadend = function(event) {
+      viewObj.gpxString = r2.result;
+      console.log("File read-in!")
+    };
+    r2.readAsText(file);
+  },  
   
 	uploadTrack: function (event) {
 		var viewObj = this;

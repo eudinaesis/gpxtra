@@ -6,6 +6,7 @@ window.GPXtra = {
   initialize: function() {
     console.log('Hello from Backbone!');
 		GPXtra.workouts = new GPXtra.Collections.Workouts(INITIAL_WORKOUTS);
+    GPXtra.user = USER_DATA;
     var navbar = new GPXtra.Views.NavBar();
     $("#navbar").html(navbar.render().$el);
     new GPXtra.Routers.GPXtraRouter($("#content-grid"));
