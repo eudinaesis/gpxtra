@@ -58,7 +58,7 @@ L.Control.Elevation = L.Control.extend({
 			.y1(function(d) {
 			return y(d.altitude);
 		});
-
+    
 		var container = this._container = L.DomUtil.create("div", "elevation");
 		
 		this._initToggle();
@@ -81,7 +81,7 @@ L.Control.Elevation = L.Control.extend({
 			.y(function(d) {
 			return opts.height;
 		});
-
+    
 		var g = d3.select(this._container).select("svg").select("g");
 
 		this._areapath = g.append("path")
@@ -259,12 +259,14 @@ L.Control.Elevation = L.Control.extend({
 			item = bisect(this._data, xinvert),
 			alt = this._data[item].altitude,
 			dist = this._data[item].dist,
+      hr = this._data[item].hr, // -pln
+      hrStr = hr ? ", HR: " + hr + " bpm" : "", // only insert HR if exists
 			ll = this._data[item].latlng,
 			numY = opts.hoverNumber.formatter(alt, opts.hoverNumber.decimalsY),
 			numX = opts.hoverNumber.formatter(dist, opts.hoverNumber.decimalsX);
 
 		this._focuslabelX.attr("x", coords[0])
-			.text(numY + " m");
+			.text(numY + " m" + hrStr);
 		this._focuslabelY.attr("y", opts.height - 5)
 			.attr("x", coords[0])
 			.text(numX + " km");
@@ -368,23 +370,30 @@ L.Control.Elevation = L.Control.extend({
 			var data = this._data || [];
 			var dist = this._dist || 0;
 			var ele = this._maxElevation || 0;
+      var minHR = 0;
+      var maxHR = 0;
 			for (var i = 0; i < coords.length; i++) {
 				var s = coords[i];
 				var e = coords[i ? i - 1 : 0];
 				var newdist = s.distanceTo(e);
 				dist = dist + newdist / 1000;
 				ele = ele < s.meta.ele ? s.meta.ele : ele;
+        minHR = minHR > s.meta.hr ? s.meta.hr : minHR;
+        maxHR = maxHR < s.meta.hr ? s.meta.hr : maxHR;
 				data.push({
 					dist: dist,
 					altitude: s.meta.ele,
 					x: s.lng,
 					y: s.lat,
-					latlng: s
+					latlng: s,
+          hr: s.meta.hr // adding HR - pln
 				});
 			}
 			this._dist = dist;
 			this._data = data;
 			this._maxElevation = ele;
+      this._minHR = minHR;
+      this._maxHR = maxHR;
 		}
 	},
 
@@ -435,6 +444,19 @@ L.Control.Elevation = L.Control.extend({
 		var ydomain = d3.extent(this._data, function(d) {
 			return d.altitude;
 		});
+    
+    /*
+    var hrLine = d3.svg.line()
+        .x(function(d) { return x(d.dist); })
+        .y(function(d) { return y(d.hr); });
+        
+    if (this._maxHR > 0){
+      svg.append("path")
+      .attr("class", "line")
+      .style("stroke", "red")
+      .attr("d", hrLine(data));      
+    }
+    */
 
 		this._x.domain(xdomain);
 		this._y.domain(ydomain);
