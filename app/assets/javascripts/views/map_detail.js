@@ -13,8 +13,12 @@ GPXtra.Views.MapDetail = Support.CompositeView.extend({
   
   saveModel: function(){
     this.model.save({}, {
-      success: console.log("saved"),
-      error: console.log("errors")
+      success: function(resp) {
+        console.log("saved");
+      },
+      error: function(req, status, err) {
+        console.log("errors");
+      }
     });
   },
   

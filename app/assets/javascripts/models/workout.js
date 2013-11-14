@@ -33,7 +33,7 @@ GPXtra.Models.Workout = Backbone.Model.extend({
   */
   
   timeString: function(){
-    return Support.secondsToString(this.attributes.moving_time);
+    return Support.secondsToString(this.attributes.moving_time, true);
   },
   
   speed_mph: function(){

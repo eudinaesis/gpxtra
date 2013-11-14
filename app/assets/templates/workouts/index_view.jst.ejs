@@ -15,42 +15,50 @@
     </div> <!-- end of col -->
   </div> <!-- end of row -->
   <div class="row panel-body">
-    <div class="col-xs-2">
-      <img class="media-object" width="96" height="96" src="<%= workout.get("gravatar_url") %>" alt="User image">
+    <div class="col-xs-4 media">
+      <img class="media-object pull-left" width="96" height="96" src="<%= workout.get("gravatar_url") %>" alt="User image">
+      <div class="media-body">
+        <div class="media-heading">
+          <h4>
+            <%= workout.is_own() ? "Me" : workout.escape("username") %>
+          </h4>
+        </div>
+        <% if (!workout.is_own()) { %>
+          <button type="button" class="btn btn-warning unfollow" data-id="<%= workout.get('user_id') %>">
+            Unfollow <%= workout.escape("username").split(" ", 1)[0] %>
+          </button>
+        <% } %>
+      </div>
     </div>
-    <div class="col-xs-4">
-      <h4 class="media-heading">
-        <%= workout.is_own() ? "Me" : workout.escape("username") %>
-      </h4>
-    </div>
-    <div class="col-xs-3">
-      Distance: <%= workout.get("distance") %> miles
-    </div>
-    <div class="col-xs-3">
-      Moving time: <%= workout.timeString() %>
-    </div>
-  </div>
-  <div class="row panel-body">
-    <div class="col-xs-4 col-xs-offset-2">
-      <% if (!workout.is_own()) { %>
-      <button type="button" class="btn btn-warning">Unfollow <%= workout.escape("username").split(" ", 1)[0] %></button>
+    <div class="col-xs-8"> <!-- nesting rows/columns to right of pic -->
+      <div class="row panel-body">
+        <div class="col-xs-6">
+          Distance: <%= workout.get("distance") %> miles
+        </div>
+        <div class="col-xs-6">
+          Moving time: <%= workout.timeString() %>
+        </div>
+      </div>
+      <div class="row panel-body">
+        <div class="col-xs-6">
+          Elevation: <%= workout.get("elevation") %> feet
+        </div>
+        <div class="col-xs-6">
+          Speed: <%= workout.speed_mph() %> mph
+        </div>
+      </div> <!-- end of row -->
+      <% if (workout.get("max_hr") > 0){ %>
+        <div class="row panel-body">
+          <div class="col-xs-6">
+            <span class="glyphicon glyphicon-heart" color="red"></span> Max HR: <%= workout.get("max_hr") %> bpm
+          </div>
+          <div class="col-xs-6">
+            <span class="glyphicon glyphicon-heart" color="red"></span> Average HR: <%= workout.get("hrAvg") %> bpm
+          </div>
+        </div> <!-- end of row -->
       <% } %>
-    </div>
-    <div class="col-xs-3">
-      Elevation: <%= workout.get("elevation") %> feet
-    </div>
-    <div class="col-xs-3">
-      Speed: <%= workout.speed_mph() %> mph
-    </div>
-  </div> <!-- end of row -->
-  <div class="row panel-body">
-     <div class="col-xs-3 col-xs-offset-6">
-      Max heartrate: <%= workout.get("max_hr") %> bpm
-    </div>
-    <div class="col-xs-3">
-      Average heartrate: <%= workout.get("hrAvg") %> bpm
-    </div>
-  </div> <!-- end of row -->
+    </div> <!-- end of nested columns -->
+  </div>
 <% if (workout.escape("description").length !== 0) { %>
   <div class="row panel-body">
     <div class="col-xs-12">

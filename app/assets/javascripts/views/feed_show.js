@@ -7,6 +7,24 @@ GPXtra.Views.FeedShow = Support.CompositeView.extend({
     $('#content-grid').on('hide.bs.collapse', '[id|="collapse"]', this.hideMapDetail);
     $('#content-grid').on('show.bs.collapse', '[id|="collapse"]', this.displayMapDetail);
     $('#content-grid').on('click', 'li.feed-dd', this.feedMode);
+    $('#content-grid').on('click', 'button.unfollow', this.unfollow);
+  },
+  
+  unfollow: function(event){
+    var exfriend_id = parseInt($(event.target).attr("data-id"));
+    $.ajax( '/follows/' + exfriend_id, {
+      type: 'DELETE',
+      success: function( resp ) {
+        console.log( resp );
+      },
+      error: function( req, status, err ) {
+        console.log( 'something went wrong', status, err );
+      }
+    });
+    var newWorkouts = GPXtra.workouts.reject(function(workout){
+      return workout.get("user_id") === exfriend_id;
+    })
+    GPXtra.workouts.reset(newWorkouts);
   },
 
   feedMode: function(event){

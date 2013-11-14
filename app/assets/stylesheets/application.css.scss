@@ -17,6 +17,9 @@
 $grid-float-breakpoint: 100px;
 $navbar-height: 35px;
 @import "twitter/bootstrap";
+span .glyphicon-heart{
+  color: red;
+}
 .map {
   width: 100%;
   height: 500px;
