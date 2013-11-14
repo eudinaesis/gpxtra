@@ -1,7 +1,6 @@
 GPXtra.Views.NavBar = Support.CompositeView.extend({
 
   initialize: function() {
-    this.model = new GPXtra.Models.Workout();
     this.trackData = "";
   },
   
@@ -50,7 +49,8 @@ GPXtra.Views.NavBar = Support.CompositeView.extend({
   
 	uploadTrack: function (event) {
 		var viewObj = this;
-		var isNew = (viewObj.model.isNew());
+    viewObj.model = new GPXtra.Models.Workout();
+    var isNew = (viewObj.model.isNew());
 		var saveCallback = {
 				success: function () {
           console.log("Success!")
@@ -69,7 +69,7 @@ GPXtra.Views.NavBar = Support.CompositeView.extend({
     $('#uploadModal').modal('hide');
 		var formData = $(event.target).serializeJSON();
     formData.workout.gpx_track = viewObj.trackData;
-		this.model.save(formData.workout, saveCallback);
+		viewObj.model.save(formData.workout, saveCallback);
 	}
   
 });

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131111214414) do
+ActiveRecord::Schema.define(:version => 20131113234901) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -24,6 +24,37 @@ ActiveRecord::Schema.define(:version => 20131111214414) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "workout_id", :null => false
+    t.integer  "author_id",  :null => false
+    t.text     "text",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "comments", ["author_id"], :name => "index_comments_on_author_id"
+  add_index "comments", ["workout_id"], :name => "index_comments_on_workout_id"
+
+  create_table "fistbumps", :force => true do |t|
+    t.integer  "workout_id", :null => false
+    t.integer  "bumper_id",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "fistbumps", ["bumper_id"], :name => "index_fistbumps_on_bumper_id"
+  add_index "fistbumps", ["workout_id"], :name => "index_fistbumps_on_workout_id"
+
+  create_table "follows", :force => true do |t|
+    t.integer  "follower_id",      :null => false
+    t.integer  "followed_user_id", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "follows", ["followed_user_id"], :name => "index_follows_on_followed_user_id"
+  add_index "follows", ["follower_id"], :name => "index_follows_on_follower_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -50,7 +81,7 @@ ActiveRecord::Schema.define(:version => 20131111214414) do
     t.string   "workout_type"
     t.float    "distance"
     t.integer  "elevation"
-    t.boolean  "hidden",                 :default => false
+    t.boolean  "is_private",             :default => false
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.string   "gpx_track_file_name"

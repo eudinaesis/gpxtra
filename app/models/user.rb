@@ -11,6 +11,20 @@ class User < ActiveRecord::Base
   gravtastic
 
   has_many :workouts, :inverse_of => :user
+
+  has_many :fistbumps_given, :class_name => "Fistbump", :foreign_key => "bumper_id", :inverse_of => :bumper
+  has_many :fistbumps_received, :through => :workouts, :source => :fistbumps
+
+  has_many :target_follows, :class_name => "Follow", :foreign_key => "followed_user_id", :inverse_of => :followed_user, :dependent => :destroy
+  has_many :subject_follows, :class_name => "Follow", :foreign_key => "follower_id", :inverse_of => :follower, :dependent => :destroy
+  has_many :followers, :through => :target_follows, :source => :follower
+  has_many :followed_users, :through => :subject_follows, :source => :followed_user
+  
+  has_many :followed_workouts, :through => :followed_users, :source => :workouts, :conditions => ['is_private = ?', false]
+  
+  def feed
+    (self.workouts + self.followed_workouts).sort { |a, b| b.datetime <=> a.datetime }
+  end
   
   def stats(time="all")
     where_string = case time

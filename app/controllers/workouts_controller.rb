@@ -1,7 +1,9 @@
 class WorkoutsController < ApplicationController
   def index
-    @workouts = Workout.includes(:user).where(:user_id => current_user.id).order(:datetime).reverse_order
-    render :json => @workouts, root: false
+    # @workouts = Workout.includes(:user).where(:user_id => current_user.id).order(:datetime).reverse_order
+    # render :json => @workouts, root: false
+    @feed = current_user.feed
+    render :json => @feed, root: false
   end
   
   def show

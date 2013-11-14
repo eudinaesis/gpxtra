@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default <%= workout.get("user_id") !== GPXtra.user.id ? 'panel-warning' : ''%>">
   <div class="row panel-heading">
     <div class="col-xs-12">
       <h4 class="panel-title">

@@ -51,8 +51,9 @@
             <input class="form-control" id="workout-file" type="file" name="workout[gpx_track]" accept=".gpx">
           </div>
           <div class="checkbox">
+            <input type="hidden"   name="workout[is_private]" value="false" />
             <label>
-              <input type="checkbox" id="private-checkbox" name="workout[hidden]">Private
+              <input type="checkbox" id="private-checkbox" name="workout[is_private]" value="true">Private
             </label>
           </div>
         </form>

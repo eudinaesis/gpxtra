@@ -81,11 +81,11 @@ x- Backbone implementation of Workout/s, x-rendering, x-uploading, x-saving
   a. Devise/OAuth stuff
   b. has_many :workouts
   c. has_many :comments, :through => :workouts
-  d. has_many :fistbumps, :through => :workouts
+  d. has_many :fistbumps_received, :through => :workouts
   e. has_many :incoming_follows
   f. has_many :outgoing_follows
   g. has_many :followers, :through => :incoming_follows, :source => :follower_id
-  h. has_many :followed_users, :through => :outgoing_follows, :source => :followed_id
+  h. has_many :followed_users, :through => :outgoing_follows, :source => :followed_user_id
   i. gravatar
   j. user_pic: attachment
   k. has_many :feed_workouts, :through => :followed_users, :source => :workouts
@@ -111,7 +111,7 @@ x- Backbone implementation of Workout/s, x-rendering, x-uploading, x-saving
   b. bumper_id: integer, :index
 5. Follow
   a. follower_id: integer, :index
-  b. followed_id: integer, :index
+  b. followed_user_id: integer, :index
   
 **Rails routes: Full**
 
