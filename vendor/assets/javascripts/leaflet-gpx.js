@@ -83,7 +83,8 @@ L.GPX = L.FeatureGroup.extend({
       hr: {
         avg: 0,
         _total: 0,
-        _points: []
+        _points: [],
+        max: 0
       },
       duration: {
         start: null,
@@ -191,6 +192,11 @@ L.GPX = L.FeatureGroup.extend({
   get_average_hr: function() {
     return this._info.hr.avg;
   },
+
+  get_max_hr: function() {
+    return this._info.hr.max;
+  },
+
   get_heartrate_data: function() {
     var _this = this;
     return this._info.hr._points.map(function(p) {
@@ -344,6 +350,9 @@ L.GPX = L.FeatureGroup.extend({
         ll.meta.hr = parseInt(_[0].textContent);
         this._info.hr._points.push([this._info.length, ll.meta.hr]);
         this._info.hr._total += ll.meta.hr;
+        if (ll.meta.hr > this._info.hr.max) {
+          this._info.hr.max = ll.meta.hr;
+        }
       }
 
       this._info.elevation._points.push([this._info.length, ll.meta.ele]);

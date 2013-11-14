@@ -27,15 +27,5 @@ GPXtra.Collections.Workouts = Backbone.Collection.extend({
     return stats;
   },
   
-  secondsToString: function(seconds) {
-    var days = seconds / 60 / 60 / 24 << 0;
-    days = (days > 0 ? days + " days, " : "");
-    var hours = seconds / 60 / 60 << 0;
-    hours = (hours > 0 ? hours + " hours, " : "");
-    var minutes = seconds / 60 << 0;
-    minutes = (minutes > 0 ? minutes + " minutes, " : "");
-    seconds = seconds % 60 + " seconds";
-    var string = days + hours + minutes + seconds
-    return string;
-  } 
+  secondsToString: Support.secondsToString
 });

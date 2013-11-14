@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131113234901) do
+ActiveRecord::Schema.define(:version => 20131114195542) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -76,14 +76,14 @@ ActiveRecord::Schema.define(:version => 20131113234901) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "workouts", :force => true do |t|
-    t.integer  "user_id",                                   :null => false
+    t.integer  "user_id",                                    :null => false
     t.datetime "datetime"
-    t.string   "workout_type"
+    t.string   "workout_type",           :default => "bike"
     t.float    "distance"
     t.integer  "elevation"
     t.boolean  "is_private",             :default => false
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "gpx_track_file_name"
     t.string   "gpx_track_content_type"
     t.integer  "gpx_track_file_size"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20131113234901) do
     t.string   "pace"
     t.integer  "hrAvg"
     t.integer  "moving_time"
+    t.integer  "max_hr"
   end
 
   add_index "workouts", ["distance"], :name => "index_workouts_on_distance"

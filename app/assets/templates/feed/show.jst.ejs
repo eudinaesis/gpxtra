@@ -1,18 +1,23 @@
 <div class="row">
-  <div class="col-xs-9">
-    <h4>Workout Feed: <%= workouts.models.length %></h4>
+  <div class="col-xs-7">
+    <h3>Workout Feed</h3>
   </div>
-  <div class="dropdown col-xs-3">
-    <button class="btn dropdown-toggle hide" type="button" id="feedType" data-toggle="dropdown">
-      Feed views
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="feedType">
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
-        My workouts</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
-        Entire feed</a></li>
-    </ul>
+  <div class="col-xs-5">
+    <div class="btn-group btn-sm pull-right">
+      <button class="btn dropdown-toggle btn-default" type="button" id="active-feed-type" data-toggle="dropdown">
+        My workouts + followed workouts
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" id="feed-type-menu" aria-labelledby="feedType">
+        <li role="presentation" class="feed-dd active"><a role="menuitem" tabindex="-1" href="#">
+          My workouts + followed workouts
+        </a></li>
+        <li role="presentation" class="feed-dd"><a role="menuitem" tabindex="-1" href="#">
+          Only my workouts</a></li>
+        <li role="presentation" class="feed-dd"><a role="menuitem" tabindex="-1" href="#">
+          Only followed workouts</a></li>
+      </ul>
+    </div>
   </div>
 </div>
 <div id="workout-feed" class="panel-group"> <!-- beginning of panel -->

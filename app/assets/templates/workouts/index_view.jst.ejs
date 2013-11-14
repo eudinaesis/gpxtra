@@ -1,28 +1,60 @@
-<div class="panel panel-default <%= workout.get("user_id") !== GPXtra.user.id ? 'panel-warning' : ''%>">
+<div class="panel panel-default <%= workout.is_own() ? 'own-workout' : 'panel-warning followed-workout' %>">
   <div class="row panel-heading">
-    <div class="col-xs-12">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="workout-feed" href="#collapse-<%= workout.id %>">
-          <%= workout.escape("datetime") %>
-        </a>
-      </h4>
+    <div class="col-xs-12 media">
+      <a class="pull-left" href="#">
+        <img class="media-object" height="48" width="48" src="assets/<%= workout.get('workout_type') %>.svg" alt="Workout type icon">
+      </a>
+      <div class="media body">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" data-parent="workout-feed" href="#collapse-<%= workout.id %>">
+            <%= workout.escape("datetime") %> : 
+            "<%= workout.escape("title") %>"
+          </a>
+        </h3>
+      </div>
     </div> <!-- end of col -->
   </div> <!-- end of row -->
   <div class="row panel-body">
     <div class="col-xs-2">
-      <%= workout.escape("workout_type") %>
+      <img class="media-object" width="96" height="96" src="<%= workout.get("gravatar_url") %>" alt="User image">
     </div>
-    <div class="col-xs-5">
-      <%= workout.escape("username") %>
+    <div class="col-xs-4">
+      <h4 class="media-heading">
+        <%= workout.is_own() ? "Me" : workout.escape("username") %>
+      </h4>
     </div>
-    <div class="col-xs-5">
-      <%= workout.escape("title") %>
+    <div class="col-xs-3">
+      Distance: <%= workout.get("distance") %> miles
+    </div>
+    <div class="col-xs-3">
+      Moving time: <%= workout.timeString() %>
     </div>
   </div>
+  <div class="row panel-body">
+    <div class="col-xs-4 col-xs-offset-2">
+      <% if (!workout.is_own()) { %>
+      <button type="button" class="btn btn-warning">Unfollow <%= workout.escape("username").split(" ", 1)[0] %></button>
+      <% } %>
+    </div>
+    <div class="col-xs-3">
+      Elevation: <%= workout.get("elevation") %> feet
+    </div>
+    <div class="col-xs-3">
+      Speed: <%= workout.speed_mph() %> mph
+    </div>
+  </div> <!-- end of row -->
+  <div class="row panel-body">
+     <div class="col-xs-3 col-xs-offset-6">
+      Max heartrate: <%= workout.get("max_hr") %> bpm
+    </div>
+    <div class="col-xs-3">
+      Average heartrate: <%= workout.get("hrAvg") %> bpm
+    </div>
+  </div> <!-- end of row -->
 <% if (workout.escape("description").length !== 0) { %>
   <div class="row panel-body">
     <div class="col-xs-12">
-      <%= workout.escape("description") %>
+      Notes: <%= workout.escape("description") %>
     </div>
   </div>
 <% } %>

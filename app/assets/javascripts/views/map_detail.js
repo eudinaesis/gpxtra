@@ -87,7 +87,8 @@ GPXtra.Views.MapDetail = Support.CompositeView.extend({
         pace: gpx.get_duration_string(gpx.get_moving_pace_imp()),
         elevation: Math.floor(gpx.get_elevation_gain() * 3.28084),
         hrAvg: gpx.get_average_hr(),
-        hrArr: gpx.get_heartrate_data_imp()
+        hrArr: gpx.get_heartrate_data_imp(),
+        max_hr: gpx.get_max_hr(),
       });
       viewObj.saveModel();
     

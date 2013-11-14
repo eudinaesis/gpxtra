@@ -32,6 +32,22 @@ GPXtra.Models.Workout = Backbone.Model.extend({
   },
   */
   
+  timeString: function(){
+    return Support.secondsToString(this.attributes.moving_time);
+  },
+  
+  speed_mph: function(){
+    return (this.attributes.distance / this.attributes.moving_time * 60 * 60).toFixed(1);
+  },
+  
+  is_own: function() {
+    if (this.attributes.user_id === GPXtra.user.id){
+      return true;
+    } else {
+      return false;
+    }
+  },
+  
   parse: function(resp, options) {
     var attr = _.clone(resp);
     if (attr.datetime){
@@ -50,6 +66,7 @@ GPXtra.Models.Workout = Backbone.Model.extend({
     delete attrCopy.workout["track_url"];
     delete attrCopy.workout["username"];
     delete attrCopy.workout["hrArr"];
+    delete attrCopy.workout["gravatar_url"];
     return attrCopy;
   }
 });

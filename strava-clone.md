@@ -81,12 +81,12 @@ x- Backbone implementation of Workout/s, x-rendering, x-uploading, x-saving
   a. Devise/OAuth stuff
   b. has_many :workouts
   c. has_many :comments, :through => :workouts
-  d. has_many :fistbumps_received, :through => :workouts
-  e. has_many :incoming_follows
-  f. has_many :outgoing_follows
-  g. has_many :followers, :through => :incoming_follows, :source => :follower_id
-  h. has_many :followed_users, :through => :outgoing_follows, :source => :followed_user_id
-  i. gravatar
+x  d. has_many :fistbumps_received, :through => :workouts
+x  e. has_many :incoming_follows
+x  f. has_many :outgoing_follows
+x  g. has_many :followers, :through => :incoming_follows, :source => :follower_id
+x  h. has_many :followed_users, :through => :outgoing_follows, :source => :followed_user_id
+x  i. gravatar
   j. user_pic: attachment
   k. has_many :feed_workouts, :through => :followed_users, :source => :workouts
 2. Workout

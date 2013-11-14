@@ -6,6 +6,24 @@ GPXtra.Views.FeedShow = Support.CompositeView.extend({
     this.listenTo(this.collection, "add remove change:datetime change:title change:description change:workout_type reset", this.renderWorkoutList);
     $('#content-grid').on('hide.bs.collapse', '[id|="collapse"]', this.hideMapDetail);
     $('#content-grid').on('show.bs.collapse', '[id|="collapse"]', this.displayMapDetail);
+    $('#content-grid').on('click', 'li.feed-dd', this.feedMode);
+  },
+
+  feedMode: function(event){
+    var mode = event.target.text;
+    if (mode === "My workouts + followed workouts") {
+      $(".own-workout").removeClass("hidden");
+      $(".followed-workout").removeClass("hidden");      
+    } else if (mode === "Only my workouts") {
+      $(".own-workout").removeClass("hidden");
+      $(".followed-workout").addClass("hidden");
+    } else if (mode === "Only followed workouts") {
+      $(".own-workout").addClass("hidden");
+      $(".followed-workout").removeClass("hidden");      
+    }
+    $("#active-feed-type").text(mode);
+    $("#feed-type-menu").children().removeClass("active");
+    $(event.currentTarget).addClass("active");
   },
   
   displayMapDetail: function(event){
