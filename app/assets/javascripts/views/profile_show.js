@@ -14,7 +14,8 @@ GPXtra.Views.ProfileShow = Support.CompositeView.extend({
     var statsTime = parseInt($(event.currentTarget).attr("data-id")); // id="data-N"
     $("#stats-menu").children().removeClass("active");
     $(event.currentTarget).addClass("active");
-    $("#stats-time").text(event.target.text);
+    $("#stats-time").text(event.target.text + " ");
+    $("#stats-time").append("<span class='caret'></span>");
     this.renderStats(statsTime);
   },
   

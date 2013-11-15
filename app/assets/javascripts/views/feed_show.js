@@ -41,7 +41,8 @@ GPXtra.Views.FeedShow = Support.CompositeView.extend({
       $(".own-workout").addClass("hidden");
       $(".followed-workout").removeClass("hidden");      
     }
-    $("#active-feed-type").text(mode);
+    $("#active-feed-type").text(mode + " ");
+    $("#active-feed-type").append("<span class='caret'></span>");
     $("#feed-type-menu").children().removeClass("active");
     $(event.currentTarget).addClass("active");
   },

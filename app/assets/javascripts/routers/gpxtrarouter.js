@@ -23,7 +23,7 @@ GPXtra.Routers.GPXtraRouter = Support.SwappingRouter.extend({
       collection: GPXtra.workouts
 		});
     this.swap(profileView);
-    profileView.renderStats(7);
+    profileView.renderStats(91);
 	},
   
 	showExplore: function() {

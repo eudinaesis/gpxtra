@@ -3,6 +3,9 @@
 **THURSDAY, 11/12**
 * list Users, Follow
 
+***remove edit settings****
+splash screen
+CARETS for individual workouts, filter box
 
 
 * Serious bugs:
