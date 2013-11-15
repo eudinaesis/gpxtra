@@ -2,7 +2,7 @@ GPXtra.Routers.GPXtraRouter = Support.SwappingRouter.extend({
 	routes: {
     "!/feed": "showFeed",
     "!/profile": "showProfile",
-    "!/explore": "showExplore",
+    "!/social": "showSocial",
 	},
 
 	initialize: function (rootEl) {
@@ -33,12 +33,20 @@ GPXtra.Routers.GPXtraRouter = Support.SwappingRouter.extend({
 		});
     this.swap(exploreView);
 	},
+  
+	showSocial: function() {
+    this.activateTab("social");
+		var socialView = new GPXtra.Views.Social({
+      collection: GPXtra.others
+		});
+    this.swap(socialView);
+	},
     
   activateTab: function(activeTab) {
     var tabs = [
       "feed",
       "profile",
-      "explore"
+      "social"
     ];
     _.each(tabs, function(tab){
       var tabId = "#" + tab + "-tab";

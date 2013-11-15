@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  def show
-    @user = current_user
+  def index
+    @users = User.includes(:followers).where("id != ?", current_user.id)
+    render :json => @users, :root => false
   end
 end

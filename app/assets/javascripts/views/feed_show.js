@@ -3,6 +3,7 @@ GPXtra.Views.FeedShow = Support.CompositeView.extend({
   initialize: function() {
     _.bindAll(this, "displayMapDetail");
     _.bindAll(this, "hideMapDetail");
+    _.bindAll(this, "unfollow");
     this.listenTo(this.collection, "add remove change:datetime change:title change:description change:workout_type reset", this.renderWorkoutList);
     $('#content-grid').on('hide.bs.collapse', '[id|="collapse"]', this.hideMapDetail);
     $('#content-grid').on('show.bs.collapse', '[id|="collapse"]', this.displayMapDetail);
@@ -15,6 +16,7 @@ GPXtra.Views.FeedShow = Support.CompositeView.extend({
     $.ajax( '/follows/' + exfriend_id, {
       type: 'DELETE',
       success: function( resp ) {
+        GPXtra.others.get(exfriend_id).set({following: false});
         console.log( resp );
       },
       error: function( req, status, err ) {

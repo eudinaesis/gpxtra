@@ -24,7 +24,7 @@
           </h4>
         </div>
         <% if (!workout.is_own()) { %>
-          <button type="button" class="btn btn-warning unfollow" data-id="<%= workout.get('user_id') %>">
+          <button type="button" class="btn btn-warning unfollow btn-sm" data-id="<%= workout.get('user_id') %>">
             Unfollow <%= workout.escape("username").split(" ", 1)[0] %>
           </button>
         <% } %>

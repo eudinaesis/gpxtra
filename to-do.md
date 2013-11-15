@@ -1,6 +1,10 @@
 ###TO DO###
 
-**WEDNESDAY, 11/12**
+**THURSDAY, 11/12**
+* list Users, Follow
+
+
+
 * Serious bugs:
   - Some of Bill's and Tracy's GPX files don't map. Not clear why.
 * Improved Leaflet mapping/graphing

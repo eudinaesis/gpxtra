@@ -16,7 +16,7 @@ class FollowsController < ApplicationController
     @follow.follower_id = current_user.id
     @follow.followed_user_id = params[:followed_user_id]
     if @follow.save
-      render :json => @follow
+      render :json => @follow.followed_user, :root => false
     else
       render :json => @follow.errors.full_messages
     end

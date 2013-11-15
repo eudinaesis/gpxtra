@@ -1,0 +1,16 @@
+<div class="row panel-body">
+  <div class="col-xs-12 media">
+    <img class="media-object pull-left" width="96" height="96" src="<%= user.get("gravatar_url") %>" alt="User image">
+    <div class="media-body">
+      <div class="media-heading">
+        <h4><%= user.escape("name") %></h4>
+      </div>
+      <button type="button" class="btn btn-warning unfollow btn-sm <%= user.following() ? '' : 'hidden' %>" data-id="<%= user.id %>">
+        Unfollow <%= user.escape("name").split(" ", 1)[0] %>
+      </button>
+      <button type="button" class="btn btn-success follow btn-sm <%= user.following() ? 'hidden' : '' %>" data-id="<%= user.id %>">
+        Follow <%= user.escape("name").split(" ", 1)[0] %>
+      </button>
+    </div>
+  </div>
+</div>
