@@ -115,11 +115,11 @@ GPXtra.Views.MapDetail = Support.CompositeView.extend({
       L.control.layers(baseLayers, overlays).addTo(map);
     
       // add some data about the gpx
-      viewObj.$el.find(".elevationgain").html(
-        gpx.get_elevation_gain().toFixed(0)
+      viewObj.$el.find(".elevationgain").text(
+        (gpx.get_elevation_gain() * 3.28084).toFixed(0) + " feet uphill" 
       );
-      viewObj.$el.find(".elevationloss").html(
-        gpx.get_elevation_loss().toFixed(0)
+      viewObj.$el.find(".elevationloss").text(
+        (gpx.get_elevation_loss() * 3.28084).toFixed(0) + " feet downhill"
       );      
     });
     

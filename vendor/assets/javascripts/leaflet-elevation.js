@@ -14,7 +14,7 @@ L.Control.Elevation = L.Control.extend({
 		useHeightIndicator: true,
 		interpolation: "linear",
 		hoverNumber: {
-			decimalsX: 3,
+			decimalsX: 1,
 			decimalsY: 0,
 			formatter: undefined
 		},
@@ -201,7 +201,7 @@ L.Control.Elevation = L.Control.extend({
 			.append("text")
 			.attr("x", 15)
 			.style("text-anchor", "end")
-			.text("m");
+			.text("feet");
 	},
 
 	_appendXaxis: function(x) {
@@ -214,7 +214,7 @@ L.Control.Elevation = L.Control.extend({
 			.append("text")
 			.attr("x", this.options.width + 15)
 			.style("text-anchor", "end")
-			.text("km");
+			.text("miles");
 	},
 
 	_updateAxis: function() {
@@ -252,7 +252,7 @@ L.Control.Elevation = L.Control.extend({
 			.attr('y2', opts.height)
 			.classed('hidden', false);
 		var bisect = d3.bisector(function(d) {
-			return d.dist;
+			return d.dist ;
 		}).left;
 
 		var xinvert = this._x.invert(coords[0]),
@@ -266,10 +266,10 @@ L.Control.Elevation = L.Control.extend({
 			numX = opts.hoverNumber.formatter(dist, opts.hoverNumber.decimalsX);
 
 		this._focuslabelX.attr("x", coords[0])
-			.text(numY + " m" + hrStr);
+			.text(numY + " feet" + hrStr);
 		this._focuslabelY.attr("y", opts.height - 5)
 			.attr("x", coords[0])
-			.text(numX + " km");
+			.text(numX + " miles");
 
 		var layerpoint = this._map.latLngToLayerPoint(ll);
 
@@ -315,7 +315,7 @@ L.Control.Elevation = L.Control.extend({
 
 			this._mouseHeightFocusLabel.attr("x", layerpoint.x)
 				.attr("y", normalizedY)
-				.text(alt + " m")
+				.text(alt.toFixed() + " feet")
 				.style("visibility", "visible");
 
 		} else {
@@ -376,13 +376,13 @@ L.Control.Elevation = L.Control.extend({
 				var s = coords[i];
 				var e = coords[i ? i - 1 : 0];
 				var newdist = s.distanceTo(e);
-				dist = dist + newdist / 1000;
-				ele = ele < s.meta.ele ? s.meta.ele : ele;
+				dist = dist + (newdist / 1000 * 0.621371);
+				ele = ele < s.meta.ele * 3.28084 ? s.meta.ele * 3.28084 : ele;
         minHR = minHR > s.meta.hr ? s.meta.hr : minHR;
         maxHR = maxHR < s.meta.hr ? s.meta.hr : maxHR;
 				data.push({
 					dist: dist,
-					altitude: s.meta.ele,
+					altitude: s.meta.ele * 3.28084,
 					x: s.lng,
 					y: s.lat,
 					latlng: s,
