@@ -36,6 +36,7 @@ GPXtra.Views.NavBar = Support.CompositeView.extend({
     };
     reader.readAsDataURL(file);
     // Do I want to analyze data from the beginning?
+    /*
     var r2 = new FileReader();
     r2.onloadstart = function(event) {
       console.log("Starting r2 upload");
@@ -45,6 +46,7 @@ GPXtra.Views.NavBar = Support.CompositeView.extend({
       console.log("File read-in!")
     };
     r2.readAsText(file);
+    */
   },  
   
 	uploadTrack: function (event) {
