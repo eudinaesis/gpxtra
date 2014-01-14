@@ -39,39 +39,39 @@ GPXtra.Views.NavBar = Support.CompositeView.extend({
     /*
     var r2 = new FileReader();
     r2.onloadstart = function(event) {
-      console.log("Starting r2 upload");
+    console.log("Starting r2 upload");
     };
     r2.onloadend = function(event) {
-      viewObj.gpxString = r2.result;
-      console.log("File read-in!")
+    viewObj.gpxString = r2.result;
+    console.log("File read-in!")
     };
     r2.readAsText(file);
     */
   },  
   
-	uploadTrack: function (event) {
-		var viewObj = this;
+  uploadTrack: function (event) {
+    var viewObj = this;
     viewObj.model = new GPXtra.Models.Workout();
     var isNew = (viewObj.model.isNew());
-		var saveCallback = {
-				success: function () {
-          console.log("Success!")
-					if (isNew) {
-						GPXtra.workouts.add(viewObj.model);
-					}
-          $("#upload-form").trigger("reset");
-					Backbone.history.navigate("#!/feed", { trigger: true });
-				},
-				error: function (resp, status, jqXHR) {
-					console.log("errors!");
-				}
-			};
+    var saveCallback = {
+      success: function () {
+        console.log("Success!")
+        if (isNew) {
+          GPXtra.workouts.add(viewObj.model);
+        }
+        $("#upload-form").trigger("reset");
+        Backbone.history.navigate("#!/feed", { trigger: true });
+      },
+      error: function (resp, status, jqXHR) {
+        console.log("errors!");
+      }
+    };
 
     event.preventDefault();
     $('#uploadModal').modal('hide');
-		var formData = $(event.target).serializeJSON();
+    var formData = $(event.target).serializeJSON();
     formData.workout.gpx_track = viewObj.trackData;
-		viewObj.model.save(formData.workout, saveCallback);
-	}
+    viewObj.model.save(formData.workout, saveCallback);
+  }
   
 });
