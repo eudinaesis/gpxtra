@@ -1,4 +1,12 @@
+curl -X POST -H 'Content-Type: application/gpx+xml' --data-binary @san-mateo-loop.gpx "http://test.roadmatching.com/rest/mapmatch/?app_id=58b1bd38&app_key=8754029d5f833d88a31512317f5a62a8" -o san-mateo-loop.gpx
+
+
+	
+
+
 ###TO DO###
+
+Semi-opaque background behind elevation profile makes it less busy-looking - rounded edges, dropshadow, also
 
 **THURSDAY, 11/12**
 * list Users, Follow
