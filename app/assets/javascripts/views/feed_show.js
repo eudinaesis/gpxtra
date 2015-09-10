@@ -30,7 +30,7 @@ GPXtra.Views.FeedShow = Support.CompositeView.extend({
   },
 
   feedMode: function(event){
-    var mode = event.target.text;
+    var mode = event.target.text.trim();
     if (mode === "My workouts + followed workouts") {
       $(".own-workout").removeClass("hidden");
       $(".followed-workout").removeClass("hidden");      
