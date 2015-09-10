@@ -40,7 +40,7 @@ GPXtra.Views.MapDetail = Support.CompositeView.extend({
         attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>'
       }],
     };
-    tileSet = tileSet || "terrain";
+    tileSet = tileSet || "watercolor";
     var osmLayer = L.tileLayer(tileOptions[tileSet][0], tileOptions[tileSet][1]);
     
     var el = L.control.elevation( {
